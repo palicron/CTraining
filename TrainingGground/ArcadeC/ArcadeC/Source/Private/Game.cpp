@@ -45,7 +45,13 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
 
     SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
     bIsRunning = true;
+
+    SDL_Surface* tmp_Surface = IMG_Load("Assets/TestAsset/Text_1.png");
+    PlayerTexture = SDL_CreateTextureFromSurface(main_renderer, tmp_Surface);
+    SDL_DestroySurface(tmp_Surface);
+  
     return true;
+    
 }
 
 void Game::handle_events()
@@ -75,6 +81,11 @@ void Game::handle_events()
 
 void Game::update()
 {
+    DestinationRect.h = 25;
+    DestinationRect.w = 25;
+
+    DestinationRect.x = 100;
+    DestinationRect.y = 100;
 }
 
 void Game::render()
@@ -85,6 +96,12 @@ void Game::render()
     }
     
     SDL_RenderClear(main_renderer);
+
+    if (PlayerTexture)
+    {
+        SDL_RenderTexture(main_renderer,PlayerTexture,nullptr,&DestinationRect);
+    }
+   
     SDL_RenderPresent(main_renderer);
     SDL_Delay(1000 / 60);
 }

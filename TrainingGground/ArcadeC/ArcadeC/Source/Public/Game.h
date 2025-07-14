@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <SDL3_image/SDL_image.h>
 
 struct SDL_Window;
 struct SDL_Renderer;
@@ -29,5 +30,9 @@ public:
 private:
 
     bool bIsRunning;
+
+    SDL_Texture* PlayerTexture;
+
+    SDL_FRect SourceRect, DestinationRect;
     
 };

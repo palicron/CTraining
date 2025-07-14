@@ -18,10 +18,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Game.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dependencies\SDL3.dll">
-      <Filter>Archivos de origen</Filter>
-    </None>
+    <ClInclude Include="Source\Public\Game.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
