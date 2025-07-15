@@ -28,21 +28,20 @@ int main(int argc, char* args[])
     while (game->running())
     {
         frameStart = SDL_GetPerformanceCounter();
+
         game->handle_events();
         game->update();
         game->render();
 
-        frameTime = SDL_GetPerformanceCounter() - frameStart;
-        float deltaMS = ((static_cast<float>(frameTime)) * 1000.f) / static_cast<float>(freq);
-      //  std::printf("Delta time: %.3f ms\n", deltaMS);
-        std::printf("Frame time: %.3f ms\n", static_cast<float>(deltaMS));
-       // std::printf("Delay time: %.3f ms\n", static_cast<float>(frameDelay));
+
+        frameTime = ((SDL_GetPerformanceCounter() - frameStart) * 1000) / freq;
+        
+        std::printf("Frame time: %.3f ms\n", static_cast<float>(frameTime));
         if (frameDelay > frameTime)
         {
-           // SDL_Delay(frameDelay);
+           
+            SDL_Delay( frameDelay - frameTime);
         }
-        SDL_Delay(1000/60);
-
     }
 
 

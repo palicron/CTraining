@@ -84,7 +84,7 @@ void Game::update()
     DestinationRect.h = 25;
     DestinationRect.w = 25;
 
-    DestinationRect.x = 100;
+    DestinationRect.x += 1;
     DestinationRect.y = 100;
 }
 
