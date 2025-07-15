@@ -103,7 +103,7 @@ void Game::render()
     }
    
     SDL_RenderPresent(main_renderer);
-   // SDL_Delay(1000 / 60);
+    SDL_Delay(1000 / 60);
 }
 
 void Game::clean()
