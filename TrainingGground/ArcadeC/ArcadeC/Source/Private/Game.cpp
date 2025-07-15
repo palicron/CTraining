@@ -3,7 +3,7 @@
 #include <iostream>
 #include <__msvc_ostream.hpp>
 #include <SDL3/SDL.h>
-
+#include "../../Source/Public/Managers/TextureManager.h"
 Game::Game()
 {
     bIsRunning = false;
@@ -46,10 +46,8 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
     SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
     bIsRunning = true;
 
-    SDL_Surface* tmp_Surface = IMG_Load("Assets/TestAsset/Text_1.png");
-    PlayerTexture = SDL_CreateTextureFromSurface(main_renderer, tmp_Surface);
-    SDL_DestroySurface(tmp_Surface);
-  
+    PlayerTexture = TextureManager::LoadTexture("Assets/TestAsset/Text_1.png", main_renderer);
+    
     return true;
     
 }

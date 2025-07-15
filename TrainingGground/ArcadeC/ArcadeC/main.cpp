@@ -23,7 +23,7 @@ int main(int argc, char* args[])
     }
 
     uint64_t freq = SDL_GetPerformanceFrequency();
-    
+
     //Game Main loop
     while (game->running())
     {
@@ -36,12 +36,12 @@ int main(int argc, char* args[])
 
         frameTime = ((SDL_GetPerformanceCounter() - frameStart) * 1000) / freq;
         
-        std::printf("Frame time: %.3f ms\n", static_cast<float>(frameTime));
         if (frameDelay > frameTime)
         {
-           
-            SDL_Delay( frameDelay - frameTime);
+            SDL_Delay(frameDelay - frameTime);
         }
+        
+        std::printf("Frame time: %.3f ms\n", static_cast<float>(SDL_GetPerformanceCounter() - frameStart));
     }
 
 
