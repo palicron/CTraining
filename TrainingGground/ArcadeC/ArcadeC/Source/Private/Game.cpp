@@ -1,13 +1,12 @@
 ﻿#include "../Public/Game.h"
 
 #include <iostream>
-#include <__msvc_ostream.hpp>
 #include <SDL3/SDL.h>
-#include "../../Source/Public/Managers/TextureManager.h"
+#include "../../Source/Public/Actors/Actor.h"
+
 Game::Game()
 {
     bIsRunning = false;
-    
 }
 
 Game::~Game()
@@ -45,9 +44,7 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
 
     SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
     bIsRunning = true;
-
-    PlayerTexture = TextureManager::LoadTexture("Assets/TestAsset/Text_1.png", main_renderer);
-    
+    Player = std::make_unique<Actor>("Player", "Assets/TestAsset/Text_1.png", main_renderer,50,50);
     return true;
     
 }
@@ -79,11 +76,10 @@ void Game::handle_events()
 
 void Game::update()
 {
-    DestinationRect.h = 25;
-    DestinationRect.w = 25;
-
-    DestinationRect.x += 1;
-    DestinationRect.y = 100;
+    if (Player)
+    {
+        Player->Update();
+    }
 }
 
 void Game::render()
@@ -95,9 +91,9 @@ void Game::render()
     
     SDL_RenderClear(main_renderer);
 
-    if (PlayerTexture)
+    if (Player)
     {
-        SDL_RenderTexture(main_renderer,PlayerTexture,nullptr,&DestinationRect);
+        Player->Render();
     }
    
     SDL_RenderPresent(main_renderer);
@@ -106,6 +102,7 @@ void Game::render()
 
 void Game::clean()
 {
+    Player.release();
     SDL_DestroyRenderer(main_renderer);
     SDL_DestroyWindow(main_window);
     SDL_Quit();

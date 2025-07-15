@@ -1,10 +1,11 @@
 ﻿#pragma once
 
+#include <memory>
 #include <SDL3_image/SDL_image.h>
 
 struct SDL_Window;
 struct SDL_Renderer;
-
+class Actor;
 static SDL_Window* main_window;
 static SDL_Renderer* main_renderer;
 
@@ -30,9 +31,7 @@ public:
 private:
 
     bool bIsRunning;
-
-    SDL_Texture* PlayerTexture;
-
-    SDL_FRect SourceRect, DestinationRect;
     
+    // TODO: this shoudl not be resposability of the Game , this shoudl be create in somethin like a Game Mode 
+    std::unique_ptr<Actor> Player;
 };
