@@ -15,7 +15,7 @@ int main(int argc, char* args[])
 
     
 
-    if (!game->init("Arcade C", 1280, 720, false))
+    if (!game->init("Arcade C", 800, 640, false))
     {
         SDL_DestroyWindow(Game::GetWindow());
         SDL_Quit();

@@ -3,6 +3,10 @@
 #include <iostream>
 #include <SDL3/SDL.h>
 #include "../../Source/Public/Actors/Actor.h"
+#include "../Public/Maps/TileMap.h"
+
+static SDL_Window* main_window;
+static SDL_Renderer* main_renderer;
 
 Game::Game()
 {
@@ -42,9 +46,12 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
         return false;
     }
 
-    SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
+   // SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
     bIsRunning = true;
     Player = std::make_unique<Actor>("Player", "Assets/TestAsset/Text_1.png", main_renderer,50,50);
+    Player2 = std::make_unique<Actor>("Player", "Assets/TestAsset/Text_1.png", main_renderer,500,500);
+    Map = std::make_unique<TileMap>();
+    
     return true;
     
 }
@@ -80,6 +87,7 @@ void Game::update()
     {
         Player->Update();
     }
+    Player2->Update();
 }
 
 void Game::render()
@@ -90,11 +98,15 @@ void Game::render()
     }
     
     SDL_RenderClear(main_renderer);
-
+    if (Map)
+    {
+        Map->DrawMap();
+    }
     if (Player)
     {
         Player->Render();
     }
+    Player2->Render();
    
     SDL_RenderPresent(main_renderer);
    // SDL_Delay(1000 / 60);
@@ -111,4 +123,14 @@ void Game::clean()
 bool Game::running()
 {
     return bIsRunning;
+}
+
+SDL_Window* Game::GetWindow()
+{
+    return main_window; 
+}
+
+SDL_Renderer* Game::GetRenderer()
+{
+     return main_renderer; 
 }

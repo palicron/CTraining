@@ -6,8 +6,9 @@
 struct SDL_Window;
 struct SDL_Renderer;
 class Actor;
-static SDL_Window* main_window;
-static SDL_Renderer* main_renderer;
+class TileMap;
+
+
 
 class Game
 {
@@ -25,13 +26,16 @@ public:
 
     bool running();
 
-    static SDL_Window* GetWindow() { return main_window; }
-    static SDL_Renderer* GetRenderer() { return main_renderer; }
-    
+    static SDL_Window* GetWindow();
+    static SDL_Renderer* GetRenderer();
+
 private:
 
     bool bIsRunning;
     
     // TODO: this shoudl not be resposability of the Game , this shoudl be create in somethin like a Game Mode 
     std::unique_ptr<Actor> Player;
+    std::unique_ptr<Actor> Player2;
+    std::unique_ptr<TileMap> Map;
+
 };
