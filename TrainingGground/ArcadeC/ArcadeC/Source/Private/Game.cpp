@@ -4,10 +4,15 @@
 #include <SDL3/SDL.h>
 #include "../../Source/Public/Actors/Actor.h"
 #include "../Public/Maps/TileMap.h"
+#include "../../Source/Public/Framework/EntityComponentSystem.h"
+#include "../../Source/Public/Components/SceneComponent.h"
 
 static SDL_Window* main_window;
 static SDL_Renderer* main_renderer;
 
+EntityManager manager;
+
+auto& newPlayer(manager.CreateEntity());
 Game::Game()
 {
     bIsRunning = false;
@@ -51,6 +56,8 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
     Player = std::make_unique<Actor>("Player", "Assets/TestAsset/Text_1.png", main_renderer,50,50);
     Player2 = std::make_unique<Actor>("Player", "Assets/TestAsset/Text_1.png", main_renderer,500,500);
     Map = std::make_unique<TileMap>();
+
+    newPlayer.addComponent<SceneComponent>();
     
     return true;
     
@@ -87,6 +94,9 @@ void Game::update()
     {
         Player->Update();
     }
+    
+    manager.update();
+   std::cout << newPlayer.GetComponent<SceneComponent>().GetX() << '\n';
     Player2->Update();
 }
 
