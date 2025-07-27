@@ -1,6 +1,6 @@
 ﻿#include "../../Public/Components/SpriteComponent.h"
 
-#include "../../Public/Components/SceneComponent.h"
+#include "../../Public/Components/TransformComponent.h"
 #include "../../Public/Managers/TextureManager.h"
 
 SpriteComponent::SpriteComponent():Texture(nullptr)
@@ -21,7 +21,7 @@ void SpriteComponent::ComponentInit()
     Component::ComponentInit();
     if (Owner)
     {
-        SceneComponent = &Owner->GetComponent<class SceneComponent>();
+        SceneComponent = &Owner->GetComponent<class TransformComponent>();
     }
 
 }

@@ -2,7 +2,7 @@
 #include <memory>
 #include <SDL3/SDL_render.h>
 #include "../Framework/EntityComponentSystem.h"
-class SceneComponent;
+class TransformComponent;
 
 class SpriteComponent: public Component
 {
@@ -20,7 +20,7 @@ public:
     void SetTexture(const char* texturePath);
     
 private:
-    SceneComponent* SceneComponent;
+    TransformComponent* SceneComponent;
 
     SDL_Texture* Texture;
     SDL_FRect SourceRect, DestinationRect;

@@ -5,7 +5,7 @@
 #include "../../Source/Public/Actors/Actor.h"
 #include "../Public/Maps/TileMap.h"
 #include "../../Source/Public/Framework/EntityComponentSystem.h"
-#include "../../Source/Public/Components/SceneComponent.h"
+#include "../../Source/Public/Components/TransformComponent.h"
 #include "../Public/Components/SpriteComponent.h"
 
 static SDL_Window* main_window;
@@ -56,7 +56,7 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
     bIsRunning = true;
     Map = std::make_unique<TileMap>();
 
-    newPlayer.addComponent<SceneComponent>(10.f,10.f);
+    newPlayer.addComponent<TransformComponent>(10.f,10.f);
     newPlayer.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
     return true;
     
@@ -91,9 +91,9 @@ void Game::update()
 {
     newPlayer.update();
     manager.update();
-    std::cout << newPlayer.GetComponent<SceneComponent>().GetX() << '\n';
+    std::cout << newPlayer.GetComponent<TransformComponent>().GetX() << '\n';
 
-    if (newPlayer.GetComponent<SceneComponent>().GetX() > 100)
+    if (newPlayer.GetComponent<TransformComponent>().GetX() > 100)
     {
         
     }
