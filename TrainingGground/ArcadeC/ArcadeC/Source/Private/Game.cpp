@@ -6,6 +6,7 @@
 #include "../Public/Maps/TileMap.h"
 #include "../../Source/Public/Framework/EntityComponentSystem.h"
 #include "../../Source/Public/Components/SceneComponent.h"
+#include "../Public/Components/SpriteComponent.h"
 
 static SDL_Window* main_window;
 static SDL_Renderer* main_renderer;
@@ -53,12 +54,10 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
 
    // SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
     bIsRunning = true;
-    Player = std::make_unique<Actor>("Player", "Assets/TestAsset/Text_1.png", main_renderer,50,50);
-    Player2 = std::make_unique<Actor>("Player", "Assets/TestAsset/Text_1.png", main_renderer,500,500);
     Map = std::make_unique<TileMap>();
 
-    newPlayer.addComponent<SceneComponent>();
-    
+    newPlayer.addComponent<SceneComponent>(10.f,10.f);
+    newPlayer.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
     return true;
     
 }
@@ -90,14 +89,14 @@ void Game::handle_events()
 
 void Game::update()
 {
-    if (Player)
-    {
-        Player->Update();
-    }
-    
+    newPlayer.update();
     manager.update();
-   std::cout << newPlayer.GetComponent<SceneComponent>().GetX() << '\n';
-    Player2->Update();
+    std::cout << newPlayer.GetComponent<SceneComponent>().GetX() << '\n';
+
+    if (newPlayer.GetComponent<SceneComponent>().GetX() > 100)
+    {
+        
+    }
 }
 
 void Game::render()
@@ -112,19 +111,15 @@ void Game::render()
     {
         Map->DrawMap();
     }
-    if (Player)
-    {
-        Player->Render();
-    }
-    Player2->Render();
-   
+    newPlayer.Draw();
+
     SDL_RenderPresent(main_renderer);
    // SDL_Delay(1000 / 60);
 }
 
 void Game::clean()
 {
-    Player.release();
+    newPlayer.Destroy();
     SDL_DestroyRenderer(main_renderer);
     SDL_DestroyWindow(main_window);
     SDL_Quit();

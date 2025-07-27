@@ -5,16 +5,16 @@
 #include <filesystem>
 #include <__msvc_filebuf.hpp>
 
-SDL_Texture* TextureManager::LoadTexture(const char* fileName, SDL_Renderer* renderer)
+SDL_Texture* TextureManager::LoadTexture(const char* fileName)
 {
     SDL_Surface* tmp_Surface = IMG_Load(fileName);
-
-    if (!tmp_Surface)
+    
+    if (!tmp_Surface ||  !Game::GetRenderer())
     {
         return nullptr;
     }
-
-    SDL_Texture* tmp_Texture = SDL_CreateTextureFromSurface(renderer, tmp_Surface);
+   
+    SDL_Texture* tmp_Texture = SDL_CreateTextureFromSurface(Game::GetRenderer(), tmp_Surface);
     SDL_DestroySurface(tmp_Surface);
     return tmp_Texture;
 }

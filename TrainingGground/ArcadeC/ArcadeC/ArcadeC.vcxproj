@@ -288,6 +288,7 @@
       <AdditionalIncludeDirectories>D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;D:\C++ Trianing\SDL\SDL3-3.2.16\include;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Source\Private\Components\SpriteComponent.cpp" />
     <ClCompile Include="Source\Private\Framework\EntityComponentSystem.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -599,6 +600,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Public\Actors\Actor.h" />
     <ClInclude Include="Source\Public\Components\SceneComponent.h" />
+    <ClInclude Include="Source\Public\Components\SpriteComponent.h" />
     <ClInclude Include="Source\Public\Framework\EntityComponentSystem.h" />
     <ClInclude Include="Source\Public\Game.h" />
     <ClInclude Include="Source\Public\Managers\TextureManager.h" />

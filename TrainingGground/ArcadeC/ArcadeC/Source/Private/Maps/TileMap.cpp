@@ -27,9 +27,9 @@ int TestMap[20][25] ={
 
 TileMap::TileMap()
 {
-    Dirt = TextureManager::LoadTexture("Assets/TestAsset/Dirt_Texture.png",Game::GetRenderer());
-    Grass = TextureManager::LoadTexture("Assets/TestAsset/Grass_Texture.png",Game::GetRenderer());
-    Water = TextureManager::LoadTexture("Assets/TestAsset/Water_Texture.png",Game::GetRenderer());
+    Dirt = TextureManager::LoadTexture("Assets/TestAsset/Dirt_Texture.png");
+    Grass = TextureManager::LoadTexture("Assets/TestAsset/Grass_Texture.png");
+    Water = TextureManager::LoadTexture("Assets/TestAsset/Water_Texture.png");
     LoadMap(TestMap);
 
     //TODO this Should be a variable in Game

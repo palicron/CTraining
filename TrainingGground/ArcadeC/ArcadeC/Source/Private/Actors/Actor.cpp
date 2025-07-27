@@ -8,7 +8,7 @@
 Actor::Actor(const char* name, const char* texturePath, SDL_Renderer* inRenderer,const int x, const int y): Name(name), TexturePath(texturePath), Xpos(x), Ypos(y)
 {
     Renderer = inRenderer ;
-    Texture = TextureManager::LoadTexture(TexturePath, Renderer);
+    Texture = TextureManager::LoadTexture(TexturePath);
 }
 
 Actor::~Actor()
