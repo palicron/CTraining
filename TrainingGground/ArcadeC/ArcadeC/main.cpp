@@ -41,7 +41,7 @@ int main(int argc, char* args[])
             SDL_Delay(frameDelay - frameTime);
         }
         
-        std::printf("Frame time: %.3f ms\n", static_cast<float>(SDL_GetPerformanceCounter() - frameStart));
+       // std::printf("Frame time: %.3f ms\n", static_cast<float>(SDL_GetPerformanceCounter() - frameStart));
     }
 
 

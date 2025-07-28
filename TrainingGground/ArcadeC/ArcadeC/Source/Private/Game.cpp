@@ -6,17 +6,21 @@
 #include "../Public/Maps/TileMap.h"
 #include "../../Source/Public/Framework/EntityComponentSystem.h"
 #include "../../Source/Public/Components/TransformComponent.h"
+#include "../Public/Components/MovementComponent.h"
 #include "../Public/Components/SpriteComponent.h"
+#include "../Public/Framework/PlayerController.h"
 
 static SDL_Window* main_window;
 static SDL_Renderer* main_renderer;
+bool Game::bIsRunning = false;
 
 EntityManager manager;
 
 auto& newPlayer(manager.CreateEntity());
+SDL_Event Game::Event;
+
 Game::Game()
 {
-    bIsRunning = false;
 }
 
 Game::~Game()
@@ -55,48 +59,46 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
    // SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
     bIsRunning = true;
     Map = std::make_unique<TileMap>();
-
+    
     newPlayer.addComponent<TransformComponent>(10.f,10.f);
     newPlayer.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
+    newPlayer.addComponent<MovementComponent>();
+
+    PlayerControllerPtr = std::make_unique<PlayerController>();
+    PlayerControllerPtr->Init();
+    PlayerControllerPtr->PossessPlayer(&newPlayer);
     return true;
     
 }
 
 void Game::handle_events()
 {
-    SDL_Event event = {};
+    SDL_PollEvent(&Event);
 
-    while (SDL_PollEvent(&event))
+    switch (Event.type)
     {
-        switch (event.type)
+    case SDL_EVENT_QUIT:
+        QuitGame();
+        break;
+    case SDL_EVENT_KEY_DOWN:
+        if (Event.key.key == SDLK_ESCAPE)
         {
-        case SDL_EVENT_QUIT:
-            bIsRunning = false;
-            std::cout << "Game QUIT" << '\n';
-            break;
-        case SDL_EVENT_KEY_DOWN:
-            if (event.key.key == SDLK_ESCAPE)
-            {
-                std::cout << "Escape Key Press Edning Game " << '\n';
-                bIsRunning = false;
-            }
-        default: ;
+            QuitGame();
         }
+        if (Event.key.key == SDLK_SPACE)
+        {
+            std::printf("SPACE");
+        }
+    default: ;
     }
-
-
+ 
 }
 
 void Game::update()
 {
+    PlayerControllerPtr->Update();
     newPlayer.update();
     manager.update();
-    std::cout << newPlayer.GetComponent<TransformComponent>().GetX() << '\n';
-
-    if (newPlayer.GetComponent<TransformComponent>().GetX() > 100)
-    {
-        
-    }
 }
 
 void Game::render()
@@ -120,6 +122,10 @@ void Game::render()
 void Game::clean()
 {
     newPlayer.Destroy();
+    if (PlayerControllerPtr)
+    {
+        PlayerControllerPtr.reset();
+    }
     SDL_DestroyRenderer(main_renderer);
     SDL_DestroyWindow(main_window);
     SDL_Quit();
@@ -138,4 +144,10 @@ SDL_Window* Game::GetWindow()
 SDL_Renderer* Game::GetRenderer()
 {
      return main_renderer; 
+}
+
+void Game::QuitGame()
+{
+    bIsRunning = false;
+    std::cout << "Ending Game" << '\n';
 }
