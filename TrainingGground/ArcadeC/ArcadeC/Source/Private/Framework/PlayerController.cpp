@@ -3,7 +3,7 @@
 #include <SDL3/SDL.h>
 PlayerController::PlayerController()
 {
- 
+    CurrentVel = Vector2D::ZeroVector();
 }
 
 void PlayerController::Init()
@@ -19,8 +19,14 @@ void PlayerController::Update()
         HandleKeyDown(Game::Event.key.key);
         break;
     case SDL_EVENT_KEY_UP:
+        HandleKeyUP(Game::Event.key.key);
         break;
     default: ;
+    }
+
+    if (PlayerMovementComponent)
+    {
+        PlayerMovementComponent->Move(CurrentVel);
     }
 }
 
@@ -44,10 +50,34 @@ void PlayerController::HandleKeyDown(const SDL_Keycode KeyDown)
     switch (KeyDown)
     {
     case SDLK_W:
-        std::printf("Im presiong W\n");
+        CurrentVel.y = -1;
         break;
     case SDLK_A:
-        std::printf("Im presiong A\n");
+        CurrentVel.x = -1;
+        break;
+    case SDLK_S:
+        CurrentVel.y = 1;
+        break;
+    case SDLK_D:
+        CurrentVel.x = 1;
+        break;
+    default: ;
+    }
+
+}
+
+void PlayerController::HandleKeyUP(const SDL_Keycode KeyUp)
+{
+    switch (KeyUp)
+    {
+    case SDLK_W:
+    case SDLK_S:
+        CurrentVel.y = 0;
+        break;
+    case SDLK_D:
+    case SDLK_A:
+        CurrentVel.x = 0;
+        break;
     default: ;
     }
 }

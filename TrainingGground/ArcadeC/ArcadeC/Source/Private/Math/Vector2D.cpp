@@ -78,3 +78,14 @@ std::ostream& Vector2D::operator<<(std::ostream& os)
     os << "X: " << x << " " << "Y: " << y;
     return os;
 }
+
+Vector2D Vector2D::GetSafeNormal() const
+{
+    const float Vectorlength = sqrt(x * x + y * y);
+
+    if (Vectorlength == 0.f)
+    {
+        return Vector2D::ZeroVector();
+    }
+    return Vector2D(x / Vectorlength, y / Vectorlength);
+}

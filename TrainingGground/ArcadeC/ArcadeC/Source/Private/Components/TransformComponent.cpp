@@ -38,5 +38,4 @@ void TransformComponent::SetPosition(const int32_t x, const int32_t y)
 void TransformComponent::ComponentUpdate()
 {
     Component::ComponentUpdate();
-    Position++;
 }

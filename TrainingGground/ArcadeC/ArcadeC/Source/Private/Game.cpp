@@ -73,6 +73,8 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
 
 void Game::handle_events()
 {
+    //TODO: i remove thje While(SDL_PollEvent(&Event)) chekc why AI recoment ti mabe it proses multiple inputs
+    // NEED TO CAHNGE IT TO while becous this only pull one message this mean only one input per frame 
     SDL_PollEvent(&Event);
 
     switch (Event.type)

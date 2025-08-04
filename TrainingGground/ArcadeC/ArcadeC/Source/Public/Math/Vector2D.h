@@ -27,6 +27,8 @@ public:
     Vector2D& operator++(int);
 
     std::ostream& operator<<(std::ostream& os);
+
+    Vector2D GetSafeNormal() const;
 };
 
 

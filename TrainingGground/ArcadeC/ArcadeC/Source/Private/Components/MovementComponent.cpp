@@ -9,8 +9,6 @@ MovementComponent::MovementComponent():Component()
     //@TODO Entiy should init his componets
 }
 
-
-
 void MovementComponent::ComponentInit()
 {
     Component::ComponentInit();
@@ -25,15 +23,15 @@ void MovementComponent::ComponentInit()
 
 void MovementComponent::ComponentUpdate()
 {
-    
     Component::ComponentUpdate();
 }
 
 void MovementComponent::Move(const Vector2D& Direction)
 {
+    //TODO: Diagonal movement is Jagelling
     if (OwnerTransform)
     {
-        OwnerTransform->SetPosition(OwnerTransform->GePosition() + Direction);
+        OwnerTransform->SetPosition(OwnerTransform->GePosition() + Direction.GetSafeNormal());
     }
 }
 

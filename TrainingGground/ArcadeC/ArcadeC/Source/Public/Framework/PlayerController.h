@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "../Game.h"
+#include "../../Public/Math/Vector2D.h"
 #include "EntityComponentSystem.h"
+
 
 class MovementComponent;
 
@@ -16,7 +18,8 @@ public:
     void Update();
     void PossessPlayer(Entity* TargetPlayer);
     void UnPossessPlayer();
-    
+
+    Vector2D CurrentVel;
 protected:
 
 
@@ -24,5 +27,5 @@ protected:
     MovementComponent* PlayerMovementComponent;
 
     void HandleKeyDown(const SDL_Keycode KeyDown);
-    
+    void HandleKeyUP(const SDL_Keycode KeyUp);
 };
