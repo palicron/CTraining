@@ -11,7 +11,7 @@ public:
 
     SpriteComponent();
     SpriteComponent(const char* texturePath,const float inSizeX = 1.f, const float inSizeY = 1.f);
-    ~SpriteComponent() = default;
+    ~SpriteComponent();
 
     virtual void ComponentInit() override;
     virtual void ComponentUpdate() override;
@@ -20,12 +20,9 @@ public:
     void SetTexture(const char* texturePath);
     
 private:
-    TransformComponent* SceneComponent;
+    TransformComponent* TransformComponent;
 
     SDL_Texture* Texture;
     SDL_FRect SourceRect, DestinationRect;
-
-    float SizeX, SizeY;
-    
     
 };

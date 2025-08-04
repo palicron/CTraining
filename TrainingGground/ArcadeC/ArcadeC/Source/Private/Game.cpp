@@ -6,6 +6,8 @@
 #include "../Public/Maps/TileMap.h"
 #include "../../Source/Public/Framework/EntityComponentSystem.h"
 #include "../../Source/Public/Components/TransformComponent.h"
+#include "../Public/Collision.h"
+#include "../Public/Components/ColliderComponent.h"
 #include "../Public/Components/MovementComponent.h"
 #include "../Public/Components/SpriteComponent.h"
 #include "../Public/Framework/PlayerController.h"
@@ -17,6 +19,7 @@ bool Game::bIsRunning = false;
 EntityManager manager;
 
 auto& newPlayer(manager.CreateEntity());
+auto& wall(manager.CreateEntity());
 SDL_Event Game::Event;
 
 Game::Game()
@@ -60,13 +63,18 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
     bIsRunning = true;
     Map = std::make_unique<TileMap>();
     
-    newPlayer.addComponent<TransformComponent>(10.f,10.f);
+    newPlayer.addComponent<TransformComponent>(Vector2D(10.f),Vector2D(32.f));
     newPlayer.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
     newPlayer.addComponent<MovementComponent>();
-
+    newPlayer.addComponent<ColliderComponent>("Player");
+    
     PlayerControllerPtr = std::make_unique<PlayerController>();
     PlayerControllerPtr->Init();
     PlayerControllerPtr->PossessPlayer(&newPlayer);
+
+    wall.addComponent<TransformComponent>(Vector2D(300.f), Vector2D(300.f));
+    wall.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
+    wall.addComponent<ColliderComponent>("Wall");
     return true;
     
 }
@@ -99,8 +107,14 @@ void Game::handle_events()
 void Game::update()
 {
     PlayerControllerPtr->Update();
-    newPlayer.update();
     manager.update();
+    
+   if (Collision::AABBCollision(newPlayer.GetComponent<ColliderComponent>().collider,
+        wall.GetComponent<ColliderComponent>().collider))
+    {
+        std::cout << "Collision" << '\n';
+    }
+
 }
 
 void Game::render()
@@ -116,7 +130,7 @@ void Game::render()
         Map->DrawMap();
     }
     newPlayer.Draw();
-
+    wall.Draw();
     SDL_RenderPresent(main_renderer);
    // SDL_Delay(1000 / 60);
 }

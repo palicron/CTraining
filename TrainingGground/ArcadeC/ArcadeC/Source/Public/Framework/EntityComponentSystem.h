@@ -61,7 +61,6 @@ public:
         for (auto& Component : Components)
         {
             Component->ComponentUpdate();
-            
         }
     }
 
@@ -98,7 +97,13 @@ public:
         c->ComponentInit();
         return *c;*/
 
-        //Implementin using Moder c++, creating the unique to not need to warp it 
+        //Implementin using Moder c++, creating the unique to not need to warp it
+
+        if (HasComponent<T>())
+        {
+            return GetComponent<T>();
+        }
+        
         std::unique_ptr<T> c = std::make_unique<T>(std::forward<TArgs>(mArgs)...);
         T* RawPtr = c.get();
         RawPtr->SetOwner(this);
