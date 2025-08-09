@@ -897,6 +897,7 @@
       <AdditionalIncludeDirectories>D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;D:\C++ Trianing\SDL\SDL3-3.2.16\include;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Source\Private\Math\Math.cpp" />
     <ClCompile Include="Source\Private\Math\Vector2D.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -989,6 +990,7 @@
     <ClInclude Include="Source\Public\Game.h" />
     <ClInclude Include="Source\Public\Managers\TextureManager.h" />
     <ClInclude Include="Source\Public\Maps\TileMap.h" />
+    <ClInclude Include="Source\Public\Math\Math.h" />
     <ClInclude Include="Source\Public\Math\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>

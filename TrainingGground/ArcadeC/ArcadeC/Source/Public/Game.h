@@ -3,6 +3,9 @@
 #include <memory>
 #include <SDL3_image/SDL_image.h>
 
+#include "Math/Vector2D.h"
+
+class Vector2D;
 class PlayerController;
 struct SDL_Window;
 struct SDL_Renderer;
@@ -42,5 +45,7 @@ private:
     std::unique_ptr<TileMap> Map;
 
 
+    //@TODO this is just for collsion test purpose shoudl be remove
+    Vector2D LastPlayerPos;
 
 };

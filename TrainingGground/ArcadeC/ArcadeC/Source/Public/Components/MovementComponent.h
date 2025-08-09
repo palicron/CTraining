@@ -15,12 +15,19 @@ public:
     void ComponentUpdate() override;
 
     virtual void Move(const Vector2D& Direction);
-    virtual void AddInputVector(const Vector2D& Direction);
+
 protected:
 
-    Vector2D Velocity;
+    Vector2D VelocityDirection;
     float Speed;
+
+    float MaxSpeed;
+    float Acceleration;
+    float Deceleration;
     
+    virtual void MoveInternal();
+    virtual void Accelerate();
+    virtual void Decelerate();
     TransformComponent* OwnerTransform;
     
 };

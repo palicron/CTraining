@@ -25,11 +25,15 @@ public:
     Vector2D operator*(const Vector2D& V2) const;
     Vector2D operator/(const Vector2D& V2) const;
 
+    Vector2D operator*(const int32_t& i) const;
+    Vector2D operator*(const float& i) const;
     Vector2D& operator++(int);
 
     std::ostream& operator<<(std::ostream& os);
 
     Vector2D GetSafeNormal() const;
+
+    bool IsNearEqualZero(float tolerance = 0.01f) const;
 
     
 };

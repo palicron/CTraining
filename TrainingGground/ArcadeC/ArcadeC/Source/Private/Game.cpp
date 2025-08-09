@@ -108,11 +108,12 @@ void Game::update()
 {
     PlayerControllerPtr->Update();
     manager.update();
-    
+
+    LastPlayerPos = newPlayer.GetComponent<TransformComponent>().GePosition();
    if (Collision::AABBCollision(newPlayer.GetComponent<ColliderComponent>().collider,
         wall.GetComponent<ColliderComponent>().collider))
     {
-        std::cout << "Collision" << '\n';
+       
     }
 
 }

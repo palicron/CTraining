@@ -72,6 +72,18 @@ Vector2D Vector2D::operator/(const Vector2D& V2) const
     return Vector2D(x / V2.x > 0.f ? V2.x : 1.f, y / V2.y > 0.f ? V2.y : 1.f);
 }
 
+Vector2D Vector2D::operator*(const int32_t& i) const
+{
+    float Fi = static_cast<float>(i);
+    return Vector2D(x * Fi, y * Fi);
+}
+
+Vector2D Vector2D::operator*(const float& i) const
+{
+    
+    return Vector2D(x * i, y * i);
+}
+
 Vector2D& Vector2D::operator++(int)
 {
     x++;
@@ -94,4 +106,9 @@ Vector2D Vector2D::GetSafeNormal() const
         return Vector2D::ZeroVector();
     }
     return Vector2D(x / Vectorlength, y / Vectorlength);
+}
+
+bool Vector2D::IsNearEqualZero(float tolerance) const
+{
+    return (x > -tolerance && x < tolerance) && (y > -tolerance && y < tolerance);
 }
