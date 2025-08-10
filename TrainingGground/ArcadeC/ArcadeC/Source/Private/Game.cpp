@@ -110,11 +110,12 @@ void Game::update()
     manager.update();
 
     LastPlayerPos = newPlayer.GetComponent<TransformComponent>().GePosition();
-   if (Collision::AABBCollision(newPlayer.GetComponent<ColliderComponent>().collider,
+    //@TODO : Chage of using a SDL Rect to a own Collision need for the momen im implementin the aabb tree
+ /*  if (Collision::AABBCollision(newPlayer.GetComponent<ColliderComponent>().collider,
         wall.GetComponent<ColliderComponent>().collider))
     {
        
-    }
+    }*/
 
 }
 

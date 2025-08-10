@@ -1,8 +1,21 @@
 ﻿#include "../../Public/Components/ColliderComponent.h"
-#include "../../Public/Components/TransformComponent.h"
 
-ColliderComponent::ColliderComponent(const std::string& tag): collider(), Tag(tag), OwnerTransform(nullptr)
+#include <SDL3/SDL_render.h>
+
+#include "../../Public/Collision.h"
+#include "../../Public/Game.h"
+#include "../../Public/Components/TransformComponent.h"
+#include "../../Public/Definitions/PhysicsDefinitions.h"
+
+ColliderComponent::ColliderComponent(const std::string& tag): Tag(tag), OwnerTransform(nullptr)
 {
+    bShowDebugBox = true;
+    Collider = std::make_unique<AABBCollider>();
+}
+
+ColliderComponent::~ColliderComponent()
+{
+    Collider.reset();
 }
 
 void ColliderComponent::ComponentInit()
@@ -22,17 +35,36 @@ void ColliderComponent::ComponentInit()
     {
         OwnerTransform = &Owner->GetComponent<TransformComponent>();
     }
+    if (Collider)
+    {
+        Collider->MinPoint = OwnerTransform->GetScale();
+        Collider->MaxPoint = OwnerTransform->GetScaleSize() + Collider->MinPoint;
+    }
 }
 
 void ColliderComponent::ComponentUpdate()
 {
-    if (!OwnerTransform)
+    if (!OwnerTransform || !Collider)
     {
         return;
     }
-    //TODO Check CAst
-    collider.x = static_cast<int>(OwnerTransform->GePosition().x);
-    collider.y = static_cast<int>(OwnerTransform->GePosition().y);
-    collider.w = static_cast<int>(OwnerTransform->GetScaleSize().x);
-    collider.h = static_cast<int>(OwnerTransform->GetScaleSize().y);
+}
+
+void ColliderComponent::ComponentDraw()
+{
+    Component::ComponentDraw();
+
+    SDL_FRect DebugBox;
+    const std::vector<Vector2D> CollisionPosition = Collider->GetWorldPosition(OwnerTransform->GePosition());
+    
+
+    DebugBox.x = CollisionPosition[0].x;
+    DebugBox.y = CollisionPosition[0].y;
+    DebugBox.w = CollisionPosition[1].x - CollisionPosition[0].x;
+    DebugBox.h = CollisionPosition[1].y - CollisionPosition[0].y;
+    
+    SDL_SetRenderDrawColor(Game::GetRenderer(), 0, 0, 255
+        , SDL_ALPHA_OPAQUE);
+    SDL_RenderRect(Game::GetRenderer(), &DebugBox);
+   
 }
