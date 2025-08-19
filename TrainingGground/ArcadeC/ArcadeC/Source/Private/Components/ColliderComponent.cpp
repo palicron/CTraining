@@ -68,3 +68,13 @@ void ColliderComponent::ComponentDraw()
     SDL_RenderRect(Game::GetRenderer(), &DebugBox);
    
 }
+
+bool ColliderComponent::Collides(const Vector2D& point) const
+{
+    return Collider->Collides(point);
+}
+
+bool ColliderComponent::Collides(const ColliderComponent* other) const
+{
+    return Collider->Collides(other->Collider.get());
+}

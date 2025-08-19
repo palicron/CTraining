@@ -2,6 +2,7 @@
 #include <SDL3/SDL_rect.h>
 #include "../Framework/EntityComponentSystem.h"
 
+class Vector2D;
 struct AABBCollider;
 class TransformComponent;
 
@@ -22,6 +23,10 @@ public:
     void ComponentUpdate() override;
 
     void ComponentDraw() override;
+
+    bool Collides(const ColliderComponent* other) const;
+
+    bool Collides(const Vector2D& point) const;
 
 protected:
 

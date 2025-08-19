@@ -16,6 +16,8 @@ public:
     virtual ~Broadphase() = default;
     // adds a new AABB to the broadphase
     virtual void Add(ColliderComponent* Component) = 0;
+
+    virtual void Remove(ColliderComponent* Component) = 0;
     
     // updates broadphase to react to changes to AABB
     virtual void Update() = 0;

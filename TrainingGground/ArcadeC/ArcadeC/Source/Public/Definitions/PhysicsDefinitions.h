@@ -62,6 +62,22 @@ struct AABBCollider
 
         return AABBCollider(MinUnionPoint, MaxUnionPoint);
     }
+
+    bool Contains (const AABBCollider* Other)
+    {
+        //@TODO fast check if this contain the other aabb box calculation no rotation
+        return (MinPoint.x <= Other->MinPoint.x && MaxPoint.x >= Other->MaxPoint.x) && (MinPoint.y <= Other->MinPoint.y && MaxPoint.y >= Other->MaxPoint.y);
+    }
+
+    bool Collides(const AABBCollider* Other) const
+    {
+        return (MinPoint.x <= Other->MaxPoint.x && MaxPoint.x >= Other->MinPoint.x) && (MinPoint.y <= Other->MaxPoint.y && MaxPoint.y >= Other->MinPoint.y);
+    }
+
+    bool Collides(const Vector2D& Other) const
+    {
+        return (MinPoint.x <= Other.x && MaxPoint.x >= Other.x) && (MinPoint.y <= Other.y && MaxPoint.y >= Other.y);
+    }
     
     AABBCollider():MinPoint(Vector2D::ZeroVector()),MaxPoint(Vector2D::ZeroVector())
     {
@@ -71,7 +87,10 @@ struct AABBCollider
     {
     }
 
-   
+    float Area() const
+    {
+        return (MaxPoint.x - MinPoint.x) * (MaxPoint.y - MinPoint.y);
+    }
 };
 
 struct Node
@@ -117,7 +136,22 @@ struct Node
         }
         else
         {
-            Collider = Children[0]->Collider.Union(Children[1]->Collider);
+            Collider = Children[0]->Collider.Union(Children[1] ? Children[1]->Collider : AABBCollider());
         }
+    }
+
+    bool Collides(const ColliderComponent* Other)
+    {
+        if (!Other)
+        {
+            return false;
+        }
+
+        return Collider.Collides(Other->Collider.get());
+    }
+    
+    Node* GetSibling() const
+    {
+        return this == Parent->Children[0] ? Parent->Children[1] : Parent->Children[0];
     }
 };
