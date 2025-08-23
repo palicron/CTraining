@@ -31,6 +31,7 @@ int main(int argc, char* args[])
 
         game->handle_events();
         game->update();
+        game->PhysicsUpdate();
         game->render();
 
 

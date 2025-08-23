@@ -23,6 +23,7 @@ public:
     //Handle All Games States
     void handle_events();
     void update();
+    void PhysicsUpdate();
     void render();
     void clean();
 

@@ -11,6 +11,7 @@
 #include "../Public/Components/MovementComponent.h"
 #include "../Public/Components/SpriteComponent.h"
 #include "../Public/Framework/PlayerController.h"
+#include "../Public/Physics/NSquared.h"
 
 static SDL_Window* main_window;
 static SDL_Renderer* main_renderer;
@@ -20,6 +21,8 @@ EntityManager manager;
 
 auto& newPlayer(manager.CreateEntity());
 auto& wall(manager.CreateEntity());
+NSquared CurrentBradPase = NSquared();
+
 SDL_Event Game::Event;
 
 Game::Game()
@@ -59,24 +62,29 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
         return false;
     }
 
-   // SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
+    // SDL_SetRenderDrawColor(main_renderer, 255, 255, 255, 255);
     bIsRunning = true;
     Map = std::make_unique<TileMap>();
-    
-    newPlayer.addComponent<TransformComponent>(Vector2D(10.f),Vector2D(32.f));
+
+    newPlayer.addComponent<TransformComponent>(Vector2D(10.f), Vector2D(32.f));
     newPlayer.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
     newPlayer.addComponent<MovementComponent>();
     newPlayer.addComponent<ColliderComponent>("Player");
-    
+
     PlayerControllerPtr = std::make_unique<PlayerController>();
     PlayerControllerPtr->Init();
     PlayerControllerPtr->PossessPlayer(&newPlayer);
 
-    wall.addComponent<TransformComponent>(Vector2D(300.f), Vector2D(300.f));
+    wall.addComponent<TransformComponent>(Vector2D(300.f), Vector2D(100.f));
     wall.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
     wall.addComponent<ColliderComponent>("Wall");
+
+    //@TODO ECAH COMPONENT SHOUDLR EGISTER On his own not here
+
+    CurrentBradPase.Add(&wall.GetComponent<ColliderComponent>());
+    CurrentBradPase.Add(&newPlayer.GetComponent<ColliderComponent>());
+
     return true;
-    
 }
 
 void Game::handle_events()
@@ -117,6 +125,16 @@ void Game::update()
        
     }*/
 
+}
+
+void Game::PhysicsUpdate()
+{
+    CurrentBradPase.Update();
+   ColliderPairList list =  CurrentBradPase.ComputePairs();
+    if (!list.empty())
+    {
+        std::cout << "Posible Collition" <<  '\n';
+    }
 }
 
 void Game::render()

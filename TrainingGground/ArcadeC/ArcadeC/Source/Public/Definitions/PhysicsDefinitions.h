@@ -36,6 +36,11 @@ struct AABBCollider
     Vector2D MinPoint;
     Vector2D MaxPoint;
 
+    Vector2D MinSize;
+    Vector2D MaxSize;
+    
+    Vector2D CurrentPosition;
+    
     std::vector<Vector2D> GetCorners() const
     {
         std::vector<Vector2D> corners;
@@ -46,32 +51,69 @@ struct AABBCollider
         return corners;
     }
 
-    std::vector<Vector2D> GetWorldPosition(const Vector2D& OwnerPosition)
+    std::vector<Vector2D> GetWorldPosition() const
     {
         std::vector<Vector2D> corners;
-        corners.push_back(MinPoint + OwnerPosition);
-        corners.push_back(MaxPoint + OwnerPosition);
+        corners.push_back(MinPoint + CurrentPosition);
+        corners.push_back(MaxPoint + CurrentPosition);
 
         return corners;
     }
 
     AABBCollider Union(const AABBCollider& otherCollider) const
     {
-        const Vector2D MinUnionPoint(std::min(MinPoint.x, otherCollider.MinPoint.x), std::min(MinPoint.y, otherCollider.MinPoint.y));
-        const Vector2D MaxUnionPoint(std::max(MaxPoint.x, otherCollider.MaxPoint.x), std::max(MaxPoint.y, otherCollider.MaxPoint.y));
+
+        //@TODO weird need to revisit this AABB collisions
+        std::vector<Vector2D> corners = GetWorldPosition();
+        std::vector<Vector2D> OtherCorners = otherCollider.GetWorldPosition();
+        const Vector2D MinUnionPoint(std::min(corners[0].x, OtherCorners[0].x), std::min(corners[0].y, OtherCorners[0].y));
+        const Vector2D MaxUnionPoint(std::max(corners[1].x, OtherCorners[1].x), std::max(corners[1].y, OtherCorners[1].y));
 
         return AABBCollider(MinUnionPoint, MaxUnionPoint);
     }
 
     bool Contains (const AABBCollider* Other)
     {
+        if (!Other)
+        {
+            return false;       
+        }
+        
+        std::vector<Vector2D> corners = GetWorldPosition();
+        std::vector<Vector2D> OtherCorners = Other->GetWorldPosition();
         //@TODO fast check if this contain the other aabb box calculation no rotation
-        return (MinPoint.x <= Other->MinPoint.x && MaxPoint.x >= Other->MaxPoint.x) && (MinPoint.y <= Other->MinPoint.y && MaxPoint.y >= Other->MaxPoint.y);
+
+        
+        const bool MinxCollision = corners[1].x > OtherCorners[0].x;
+        const bool MaxxCollision = OtherCorners[1].x  > corners[0].x;
+        const bool MinyCollision = corners[1].y >= OtherCorners[0].y;
+        const bool MaxyCollision = OtherCorners[1].y > corners[0].y;
+        return MinxCollision && MaxxCollision && MinyCollision && MaxyCollision;
     }
 
     bool Collides(const AABBCollider* Other) const
     {
-        return (MinPoint.x <= Other->MaxPoint.x && MaxPoint.x >= Other->MinPoint.x) && (MinPoint.y <= Other->MaxPoint.y && MaxPoint.y >= Other->MinPoint.y);
+        if (!Other)
+        {
+            return false;       
+        }
+
+        std::vector<Vector2D> corners = GetWorldPosition();
+        std::vector<Vector2D> OtherCorners = Other->GetWorldPosition();
+        //@TODO fast check if this contain the other aabb box calculation no rotation
+
+        
+        const bool MinxCollision = corners[1].x >= OtherCorners[0].x;
+        const bool MaxxCollision = OtherCorners[1].x  >= corners[0].x;
+        const bool MinyCollision = corners[1].y >= OtherCorners[0].y;
+        const bool MaxyCollision = OtherCorners[1].y >= corners[0].y;
+        return MinxCollision && MaxxCollision && MinyCollision && MaxyCollision;
+        
+    }
+
+    void UpdateAABBWorldPosition(const Vector2D& inPosition)
+    {
+        CurrentPosition = inPosition;
     }
 
     bool Collides(const Vector2D& Other) const
@@ -91,6 +133,8 @@ struct AABBCollider
     {
         return (MaxPoint.x - MinPoint.x) * (MaxPoint.y - MinPoint.y);
     }
+
+
 };
 
 struct Node

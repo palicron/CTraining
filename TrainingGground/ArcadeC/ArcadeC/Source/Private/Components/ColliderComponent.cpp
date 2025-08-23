@@ -48,6 +48,8 @@ void ColliderComponent::ComponentUpdate()
     {
         return;
     }
+
+    Collider->UpdateAABBWorldPosition(OwnerTransform->GePosition());
 }
 
 void ColliderComponent::ComponentDraw()
@@ -55,7 +57,7 @@ void ColliderComponent::ComponentDraw()
     Component::ComponentDraw();
 
     SDL_FRect DebugBox;
-    const std::vector<Vector2D> CollisionPosition = Collider->GetWorldPosition(OwnerTransform->GePosition());
+    const std::vector<Vector2D> CollisionPosition = Collider->GetWorldPosition();
     
 
     DebugBox.x = CollisionPosition[0].x;
