@@ -7,7 +7,7 @@ class NSquared : public Broadphase
 public:
 
     NSquared();
-    ~NSquared();
+    ~NSquared() override;
     
     void Add(ColliderComponent* Component) override;
     void Remove(ColliderComponent* Component) override;

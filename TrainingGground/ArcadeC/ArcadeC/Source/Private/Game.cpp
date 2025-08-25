@@ -6,7 +6,6 @@
 #include "../Public/Maps/TileMap.h"
 #include "../../Source/Public/Framework/EntityComponentSystem.h"
 #include "../../Source/Public/Components/TransformComponent.h"
-#include "../Public/Collision.h"
 #include "../Public/Components/ColliderComponent.h"
 #include "../Public/Components/MovementComponent.h"
 #include "../Public/Components/SpriteComponent.h"
@@ -70,7 +69,7 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
     newPlayer.addComponent<SpriteComponent>("Assets/TestAsset/Text_1.png");
     newPlayer.addComponent<MovementComponent>();
     newPlayer.addComponent<ColliderComponent>("Player");
-
+   // newPlayer.GetComponent<ColliderComponent>().OnCollisionDelegate.Bind(std::bind(&Game::OnPlayerCollision, this, std::placeholders::_1, std::placeholders::_2));
     PlayerControllerPtr = std::make_unique<PlayerController>();
     PlayerControllerPtr->Init();
     PlayerControllerPtr->PossessPlayer(&newPlayer);
@@ -130,10 +129,15 @@ void Game::update()
 void Game::PhysicsUpdate()
 {
     CurrentBradPase.Update();
-   ColliderPairList list =  CurrentBradPase.ComputePairs();
+    ColliderPairList list = CurrentBradPase.ComputePairs();
     if (!list.empty())
     {
-        std::cout << "Posible Collition" <<  '\n';
+        for (auto value : list)
+        {
+            value.first->OnCollision(value.second);
+            value.second->OnCollision(value.first);
+        }
+        
     }
 }
 
@@ -186,4 +190,10 @@ void Game::QuitGame()
 {
     bIsRunning = false;
     std::cout << "Ending Game" << '\n';
+}
+
+void Game::OnPlayerCollision(ColliderComponent* PlayerCollision, ColliderComponent* OtherCollision)
+{
+    std::cout << "PlayerCollision" << '\n';
+
 }

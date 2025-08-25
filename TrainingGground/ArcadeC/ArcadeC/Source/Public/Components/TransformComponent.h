@@ -30,10 +30,11 @@ public:
     
     void SetScale(const Vector2D NewScale) { Scale = NewScale; }
 
+    void SetTransformTolLastPosition();
 private:
     
     Vector2D Position;
     Vector2D Scale;
     Vector2D Size;
-    
+    Vector2D LastPosition;
 };

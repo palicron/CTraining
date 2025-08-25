@@ -68,6 +68,8 @@ ColliderComponent* NSquared::Pick(const Vector2D& point) const
             return Comp;
         }
     }
+
+    return nullptr;
 }
 
 void NSquared::Query(const ColliderComponent& Collider, ColliderList& Results) const

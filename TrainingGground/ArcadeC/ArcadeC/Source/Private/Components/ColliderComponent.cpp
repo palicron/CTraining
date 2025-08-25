@@ -76,6 +76,18 @@ bool ColliderComponent::Collides(const Vector2D& point) const
     return Collider->Collides(point);
 }
 
+void ColliderComponent::OnCollision(ColliderComponent* other)
+{
+    if (OwnerTransform)
+    {
+        OwnerTransform->SetTransformTolLastPosition();
+    }
+
+  
+   // OnCollisionDelegate.Execute(this, other);
+    
+}
+
 bool ColliderComponent::Collides(const ColliderComponent* other) const
 {
     return Collider->Collides(other->Collider.get());

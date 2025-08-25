@@ -80,6 +80,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,6 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,7 +111,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;D:\C++ Trianing\SDL\SDL3-3.2.16\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <EnableModules>true</EnableModules>
+      <BuildStlModules>true</BuildStlModules>
+      <AdditionalOptions>/std:c++latest
+/Zc:__cplusplus
+</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,6 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,7 +175,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -242,7 +251,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -318,7 +327,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -394,7 +403,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -470,7 +479,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -547,7 +556,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -623,7 +632,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -851,7 +860,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -928,7 +937,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -1004,7 +1013,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -1080,7 +1089,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -1156,7 +1165,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Debug\</ModuleDependenciesFile>
@@ -1202,6 +1211,7 @@
       <AdditionalIncludeDirectories>D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;D:\C++ Trianing\SDL\SDL3-3.2.16\include;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Source\Public\utility\Delegates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dependencies\" />
@@ -1224,6 +1234,7 @@
     <ClInclude Include="Source\Public\Physics\AABBTree.h" />
     <ClInclude Include="Source\Public\Physics\Broadphase.h" />
     <ClInclude Include="Source\Public\Physics\NSquared.h" />
+    <ClInclude Include="Source\Public\utility\Delegates.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\TestAsset\Dirt_Texture.png" />

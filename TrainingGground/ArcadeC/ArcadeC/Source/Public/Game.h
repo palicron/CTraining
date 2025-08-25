@@ -2,9 +2,10 @@
 
 #include <memory>
 #include <SDL3_image/SDL_image.h>
-
 #include "Math/Vector2D.h"
 
+
+class ColliderComponent;
 class Vector2D;
 class PlayerController;
 struct SDL_Window;
@@ -14,7 +15,6 @@ class TileMap;
 
 class Game
 {
-
 public:
     Game();
     ~Game();
@@ -41,7 +41,6 @@ public:
 private:
 
     static bool bIsRunning;
-    
     // TODO: this shoudl not be resposability of the Game , this shoudl be create in somethin like a Game Mode 
     std::unique_ptr<TileMap> Map;
 
@@ -49,4 +48,5 @@ private:
     //@TODO this is just for collsion test purpose shoudl be remove
     Vector2D LastPlayerPos;
 
+    void OnPlayerCollision(ColliderComponent* PlayerCollision, ColliderComponent* OtherCollision);
 };

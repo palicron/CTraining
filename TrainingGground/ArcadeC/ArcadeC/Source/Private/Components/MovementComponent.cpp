@@ -42,7 +42,7 @@ void MovementComponent::ComponentUpdate()
     }
 
     MoveInternal();
-    std::cout << "Speed: " << Speed << '\n';
+
 }
 
 void MovementComponent::Move(const Vector2D& Direction)

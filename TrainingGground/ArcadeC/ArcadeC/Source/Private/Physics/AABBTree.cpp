@@ -104,6 +104,8 @@ ColliderComponent* AABBTree::Pick(const Vector2D& point) const
             }
         }
     }
+
+    return nullptr;
 }
 
 void AABBTree::Query(const ColliderComponent& Collider, ColliderList& Results) const

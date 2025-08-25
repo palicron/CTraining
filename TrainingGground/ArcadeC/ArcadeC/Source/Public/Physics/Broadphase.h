@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <utility>
 #include <list>
+#include <vector> 
+
 #include "../../Public/Components/ColliderComponent.h"
 #include "../Definitions/PhysicsDefinitions.h"
 

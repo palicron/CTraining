@@ -6,6 +6,13 @@ static std::unique_ptr<Game> game;
 
 int main(int argc, char* args[])
 {
+#if __cplusplus == 201703L
+    std::cout << "Compiling with C++17 standard." << std::endl;
+#elif __cplusplus > 201703L
+    std::cout << "Compiling with a C++ standard newer than C++17." << std::endl;
+#else
+    std::cout << "Compiling with a C++ standard older than C++17." << std::endl;
+#endif
     const int TargetFPS = 60;
     const int frameDelay = 1000 / TargetFPS;
 
