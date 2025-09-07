@@ -1,0 +1,13 @@
+﻿{
+  "InitialConfiguration" :
+  {
+    "Window" :
+    {
+      "Width" : 1280,
+      "Height" : 720,
+      "Title" : "ArcadeC",
+      "Fullscreen" : false,
+      "TargetFPS" : 60
+    }
+  }
+}

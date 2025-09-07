@@ -2,27 +2,26 @@
 #include <SDL3/SDL.h>
 #include "Source/Public/Game.h"
 
-static std::unique_ptr<Game> game;
+static std::unique_ptr<Game> GameInstance;
+#include <rapidjson/document.h>
 
 int main(int argc, char* args[])
 {
-#if __cplusplus == 201703L
-    std::cout << "Compiling with C++17 standard." << std::endl;
-#elif __cplusplus > 201703L
-    std::cout << "Compiling with a C++ standard newer than C++17." << std::endl;
-#else
-    std::cout << "Compiling with a C++ standard older than C++17." << std::endl;
-#endif
+
     const int TargetFPS = 60;
     const int frameDelay = 1000 / TargetFPS;
-
+    ///////////////////Load Data /////////////////////
+ 
+    
+    
     uint64_t frameStart = 0;
     uint64_t frameTime = 0;
-    game = std::make_unique<Game>();
+    
+    GameInstance = std::make_unique<Game>();
 
     
-
-    if (!game->init("Arcade C", 800, 640, false))
+    rapidjson::Document;
+    if (!GameInstance->init("Arcade C", 800, 640, false))
     {
         SDL_DestroyWindow(Game::GetWindow());
         SDL_Quit();
@@ -32,14 +31,14 @@ int main(int argc, char* args[])
     uint64_t freq = SDL_GetPerformanceFrequency();
 
     //Game Main loop
-    while (game->running())
+    while (GameInstance->running())
     {
         frameStart = SDL_GetPerformanceCounter();
 
-        game->handle_events();
-        game->update();
-        game->PhysicsUpdate();
-        game->render();
+        GameInstance->handle_events();
+        GameInstance->update();
+        GameInstance->PhysicsUpdate();
+        GameInstance->render();
 
 
         frameTime = ((SDL_GetPerformanceCounter() - frameStart) * 1000) / freq;
@@ -54,7 +53,7 @@ int main(int argc, char* args[])
 
 
     //Ending the Game
-    game = nullptr;
+    GameInstance = nullptr;
     SDL_Quit();
 
 
