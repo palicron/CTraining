@@ -11,9 +11,8 @@ int main(int argc, char* args[])
     const int TargetFPS = 60;
     const int frameDelay = 1000 / TargetFPS;
     ///////////////////Load Data /////////////////////
- 
-    
-    
+
+
     uint64_t frameStart = 0;
     uint64_t frameTime = 0;
     
@@ -41,7 +40,7 @@ int main(int argc, char* args[])
         GameInstance->render();
 
 
-        frameTime = ((SDL_GetPerformanceCounter() - frameStart) * 1000) / freq;
+        frameTime = ((SDL_GetPerformanceCounter() - frameStart) * 1000) / freq ;
         
         if (frameDelay > frameTime)
         {
