@@ -11,6 +11,8 @@ public:
     static IUItem* AddToViewPort(std::unique_ptr<IUItem> NewItem);
     
     static void RemoveFromViewPort(IUItem* Item);
+
+    void InitUIManager();
     
     void Update();
     

@@ -71,8 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\C++ Trianing\SDL\SDL3_image-3.2.4\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\C++ Trianing\TTF\SDL3_ttf-3.2.2\include;D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\C++ Trianing\TTF\SDL3_ttf-3.2.2\lib\x64;D:\C++ Trianing\SDL\SDL3_image-3.2.4\lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\C++ Trianing\TTF\SDL3_ttf-3.2.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>D:\C++ Trianing\TTF\SDL3_ttf-3.2.2\lib\x64;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -81,11 +85,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
-      <AdditionalIncludeDirectories>D:\C++ Trianing\Training\TrainingGground\ArcadeC\ArcadeC\Source\Public;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\C++ Trianing\TTF\SDL3_ttf-3.2.2\include\SDL3_ttf;D:\C++ Trianing\Training\TrainingGground\ArcadeC\ArcadeC\Source\Public;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);SDL3_ttf.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\C++ Trianing\Training\TrainingGground\ArcadeC\ArcadeC\Source\Public;D:\C++ Trianing\rapidjson\include;D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;D:\C++ Trianing\SDL\SDL3-3.2.16\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\C++ Trianing\TTF\SDL3_ttf-3.2.2\include\SDL3_ttf;D:\C++ Trianing\Training\TrainingGground\ArcadeC\ArcadeC\Source\Public;D:\C++ Trianing\rapidjson\include;D:\C++ Trianing\SDL\SDL3_image-3.2.4\include;D:\C++ Trianing\SDL\SDL3-3.2.16\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <EnableModules>true</EnableModules>
@@ -124,7 +129,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>D:\C++ Trianing\Training\TrainingGground\ArcadeC\ArcadeC\x64;D:\C++ Trianing\SDL\SDL3_image-3.2.4\lib\x64;D:\C++ Trianing\SDL\SDL3-3.2.16\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL3.lib;SDL3_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL3.lib;SDL3_image.lib;%(AdditionalDependencies);SDL3_ttf.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

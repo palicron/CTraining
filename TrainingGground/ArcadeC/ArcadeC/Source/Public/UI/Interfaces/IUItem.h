@@ -15,12 +15,14 @@ public:
     
     virtual std::vector<IUItem*> GetChildren() const = 0;
     
-    virtual void SetParent(IUItem* Parent) = 0;
+
+    virtual void SetParent(IUItem* NewParent) = 0;
+	virtual IUItem* GetParent() const = 0;
     virtual void Destroy() = 0;
     
     virtual void SetPosition(float x, float y) = 0;
     
-    virtual void SetVisibility(const E_Visibility Visibility, const bool bPropagate = false) = 0;
+    virtual void SetVisibility(const E_Visibility NewVisibility, const bool bPropagate = false) = 0;
     virtual E_Visibility GetVisibility() const = 0;
     
 };

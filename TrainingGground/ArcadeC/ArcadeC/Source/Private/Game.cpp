@@ -27,7 +27,7 @@ SDL_Event Game::Event;
 
 Game::Game()
 {
-    UIManagerPtr = std::make_unique<UIManager>();
+   
 }
 
 Game::~Game()
@@ -84,6 +84,13 @@ bool Game::init(const char* title, int width, int height, bool fullscreen)
 
     CurrentBradPase.Add(&wall.GetComponent<ColliderComponent>());
     CurrentBradPase.Add(&newPlayer.GetComponent<ColliderComponent>());
+
+    UIManagerPtr = std::make_unique<UIManager>();
+
+    if (UIManagerPtr)
+    {
+        UIManagerPtr->InitUIManager();
+    }
 
     return true;
 }
