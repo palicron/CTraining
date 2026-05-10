@@ -3,6 +3,7 @@
 #include <memory>
 #include <SDL3_image/SDL_image.h>
 #include "Math/Vector2D.h"
+#include "UI/UIManager.h"
 
 
 class ColliderComponent;
@@ -24,6 +25,7 @@ public:
     void handle_events();
     void update();
     void PhysicsUpdate();
+    void UIUpdate() const;
     void render();
     void clean();
 
@@ -38,6 +40,7 @@ public:
 
     
     void QuitGame();
+    
 private:
 
     static bool bIsRunning;
@@ -49,4 +52,6 @@ private:
     Vector2D LastPlayerPos;
 
     void OnPlayerCollision(ColliderComponent* PlayerCollision, ColliderComponent* OtherCollision);
+    
+    std::unique_ptr<UIManager> UIManagerPtr;
 };

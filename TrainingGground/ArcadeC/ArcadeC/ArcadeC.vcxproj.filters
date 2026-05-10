@@ -69,6 +69,12 @@
     <ClCompile Include="Source\Public\utility\Delegates.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Utility\FileReader.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Public\Utility\EngineTypes.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Game.h">
@@ -123,6 +129,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\utility\Delegates.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Utility\EngineTypes.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Utility\FileReader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

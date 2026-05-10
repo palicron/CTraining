@@ -11,6 +11,7 @@
 #include "../Public/Components/SpriteComponent.h"
 #include "../Public/Framework/PlayerController.h"
 #include "../Public/Physics/NSquared.h"
+#include "../Public/UI/UIManager.h"
 
 static SDL_Window* main_window;
 static SDL_Renderer* main_renderer;
@@ -26,6 +27,7 @@ SDL_Event Game::Event;
 
 Game::Game()
 {
+    UIManagerPtr = std::make_unique<UIManager>();
 }
 
 Game::~Game()
@@ -138,6 +140,14 @@ void Game::PhysicsUpdate()
             value.second->OnCollision(value.first);
         }
         
+    }
+}
+
+void Game::UIUpdate() const
+{
+    if (UIManagerPtr)
+    {
+        UIManagerPtr->UpdateUI();
     }
 }
 

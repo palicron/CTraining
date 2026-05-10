@@ -37,6 +37,7 @@ int main(int argc, char* args[])
         GameInstance->handle_events();
         GameInstance->update();
         GameInstance->PhysicsUpdate();
+        GameInstance->UIUpdate();
         GameInstance->render();
 
 

@@ -1,5 +1,4 @@
 ﻿#include "../../Public/Math/Math.h"
-#include "../../Public/Math/Vector2D.h"
 #include <algorithm>
 
 Vector2D Math::ClampVector2DFloat(const Vector2D& Value, const float Min, const float Max)
