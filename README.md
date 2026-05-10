@@ -24,6 +24,7 @@ The main goal is to learn modern C++ and, at the same time, create a simple engi
 - **Language:** C++20
 - **SDL3** v3.2.16
 - **SDL3_image** v3.2.4
+- **SDL3_TTF** v3.2.2
 - **RapidJSON** → [Repository](https://github.com/Tencent/rapidjson)
 - **IDE:** Rider or Visual Studio 2022
 
